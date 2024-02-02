@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "compile": "tsc -w",
+    "start": "nodemon ./dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.16",
+    "nodemon": "^3.0.3",
     "typescript": "^5.3.3"
   }
 }

@@ -14,13 +14,18 @@ type Product{
   category:String
 }
   type Query {
-    products: [Product]
+    products: [Product],
+    product(productId:ID!):Product
   }
 `;
 
 const resolvers = {
   Query: {
     products: () => db.products,
+    product: (parent: any, args: { productId: string }, context: any) => {
+      const result = db.products.find((pd) => pd.id === args.productId);
+      return result;
+    },
   },
 };
 
