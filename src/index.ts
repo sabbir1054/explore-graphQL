@@ -1,33 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { db } from "./db.js";
-
-const typeDefs = `#graphql
-type Product{
-  id: ID!
-  name:String
-  image:String
-  description:String
-  price:Float
-  quantity:Int
-  onStock:Boolean
-  category:String
-}
-  type Query {
-    products: [Product],
-    product(productId:ID!):Product
-  }
-`;
-
-const resolvers = {
-  Query: {
-    products: () => db.products,
-    product: (parent: any, args: { productId: string }, context: any) => {
-      const result = db.products.find((pd) => pd.id === args.productId);
-      return result;
-    },
-  },
-};
+import { resolvers } from "./gpql/resolver/index.js";
+import { typeDefs } from "./gpql/schema/index.js";
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
