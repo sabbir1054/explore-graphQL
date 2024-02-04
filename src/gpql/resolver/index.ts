@@ -13,4 +13,16 @@ export const resolvers = {
       return result;
     },
   },
+  Product: {
+    category: (parent, args, context) => {
+      const result = db.categories.find((pd) => pd.id === parent.categoryId);
+      return result;
+    },
+  },
+  Category: {
+    products: (parent, args, context) => {
+      const result = db.products.filter((pd) => pd.categoryId === parent.id);
+      return result;
+    },
+  },
 };
